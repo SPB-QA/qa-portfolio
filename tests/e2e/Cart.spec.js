@@ -20,7 +20,7 @@ test('ตรวจสอบการแสดงผลจำนวนที่�
     await page.locator('.cart_quantity_delete').click;
 });
 
-test('ตรวจสอบการแสดงผลจำนวนที่เพิ่มสินค้ามายังตะกร้า', async ({ page }) => {
+test('ตรวจสอบการแสดงผลจำนวนที่เพิ่มสินค้ามายืนตะกร้า - Case 2', async ({ page }) => {
     await page.goto('https://automationexercise.com/');
     await page.getByRole('link', { name: ' Signup / Login' }).click();
     await expect(page).toHaveTitle(/Automation Exercise - Signup/);

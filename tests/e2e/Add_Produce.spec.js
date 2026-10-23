@@ -30,7 +30,7 @@ test('ตรวจสอบการเพิ่มสินค้าไปย�
 });
 
 
-test('ตรวจสอบการเพิ่มสินค้าไปยังตะกร้า โดยกดปุ่ม Add to Cart จากหน้า View Produce', async ({ page }) => {
+test('ตรวจสอบการเพิ่มสินค้าไปยังตะกร้า โดยกดปุ่ม Add to Cart จากหน้า View Produce - Case 2', async ({ page }) => {
     await page.goto('https://automationexercise.com/');
     await page.getByRole('link', { name: ' Signup / Login' }).click();
     await expect(page).toHaveTitle(/Automation Exercise - Signup/);
