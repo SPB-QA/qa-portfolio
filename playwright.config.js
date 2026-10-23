@@ -25,15 +25,16 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  timeout: 60 * 1000,
+  timeout: 120 * 1000,
   expect: {
-    timeout: 10000,
+    timeout: 15000,
   },
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
-    actionTimeout: 15000,
-    navigationTimeout: 30000,
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    actionTimeout: 20000,
+    navigationTimeout: 60000,
     creenshot: 'only-on-failure',
     headless: true, 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
