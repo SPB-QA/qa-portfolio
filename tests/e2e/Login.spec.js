@@ -1,9 +1,10 @@
 // @ts-check
+
 import { test, expect } from '@playwright/test';
+import { globalLogin } from '../utils/auth';
 
 test('ตรวจสอบการสมัครสมาชิก', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.locator('div').nth(2).click();
   await page.getByRole('link', { name: ' Signup / Login' }).click();
   await expect(page).toHaveTitle(/Automation Exercise - Signup/);
 
@@ -38,7 +39,6 @@ test('ตรวจสอบการสมัครสมาชิก', async ({
 
 test('ตรวจสอบการศมัครสมาชิก กรณีไม่ได้กรอกข้อมูล validation เมื่อเข้าสู่หน้ากรอกข้อมูลเพื่มเติม', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.locator('div').nth(2).click();
   await page.getByRole('link', { name: ' Signup / Login' }).click();
   await expect(page).toHaveTitle(/Automation Exercise - Signup/);
 
@@ -59,7 +59,6 @@ test('ตรวจสอบการศมัครสมาชิก กรณ�
 
 test('ตรวจสอบการศมัครสมาชิก กรณีกรอกข้อมูล Email แบบไม่ใส่ @', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.locator('div').nth(2).click();
   await page.getByRole('link', { name: ' Signup / Login' }).click();
   await expect(page).toHaveTitle(/Automation Exercise - Signup/);
 
@@ -83,7 +82,6 @@ expect(actualMessage).toBe("Please include an '@' in the email address. '" + inv
 
 test('ตรวจสอบการศมัครสมาชิก กรณีกรอกข้อมูล Email แบบไม่ใส่ Domain', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.locator('div').nth(2).click();
   await page.getByRole('link', { name: ' Signup / Login' }).click();
   await expect(page).toHaveTitle(/Automation Exercise - Signup/);
 
@@ -104,7 +102,6 @@ expect(actualMessage).toBe("Please enter a part following '@'." + " 'xxxx@' is i
 
 test('ตรวจสอบการศมัครสมาชิก กรณีกรอกข้อมูล Email แบบไม่ใส่ User', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.locator('div').nth(2).click();
   await page.getByRole('link', { name: ' Signup / Login' }).click();
   await expect(page).toHaveTitle(/Automation Exercise - Signup/);
 
@@ -125,53 +122,34 @@ expect(actualMessage).toBe("Please enter a part followed by '@'." + " '@gmail.co
 
 test('ตรวจสอบการ login User เมื่อกรอกข้อมูลถูกต้องครบถ้วน', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.locator('div').nth(2).click();
   await page.getByRole('link', { name: ' Signup / Login' }).click();
   await expect(page).toHaveTitle(/Automation Exercise - Signup/);
+  await globalLogin(page, 'Test555@gmail.com', 'xxxx1234');
 
-  //sign in user
-  await page.locator('form').filter({ hasText: 'login' }).getByPlaceholder('Email Address').fill('Test555@gmail.com');
-  await page.getByRole('textbox', { name: 'password' }).fill('xxxx1234');
-  await page.getByRole('button', { name: 'Login' }).click();
 });
 
 test('ตรวจสอบการ login User เมื่อกรอกข้อมูลผิด', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.locator('div').nth(2).click();
   await page.getByRole('link', { name: ' Signup / Login' }).click();
   await expect(page).toHaveTitle(/Automation Exercise - Signup/);
-
-  //sign in user
-  await page.locator('form').filter({ hasText: 'login' }).getByPlaceholder('Email Address').fill('Test0112@gmail.com');
-  await page.getByRole('textbox', { name: 'password' }).fill('xxxxxxxx');
-  await page.getByRole('button', { name: 'Login' }).click();
+  await globalLogin(page, 'Test0112@gmail.com', 'xxxxxxxx');
 
   await expect(page.getByText('Your email or password is incorrect!')).toBeVisible();
 });
 
 test('ตรวจสอบการ logout User', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.locator('div').nth(2).click();
   await page.getByRole('link', { name: ' Signup / Login' }).click();
   await expect(page).toHaveTitle(/Automation Exercise - Signup/);
-
-  //sign in user
-  await page.locator('form').filter({ hasText: 'login' }).getByPlaceholder('Email Address').fill('Test555@gmail.com');
-  await page.getByRole('textbox', { name: 'password' }).fill('xxxx1234');
-  await page.getByRole('button', { name: 'Login' }).click();
+  await globalLogin(page, 'Test555@gmail.com', 'xxxx1234');
   await page.getByRole('link', { name: ' Logout' }).click();
 });
 
 test('ตรวจสอบการ Delete Account', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.locator('div').nth(2).click();
   await page.getByRole('link', { name: ' Signup / Login' }).click();
   await expect(page).toHaveTitle(/Automation Exercise - Signup/);
-
-  //sign in user
-  await page.locator('form').filter({ hasText: 'login' }).getByPlaceholder('Email Address').fill('Test555@gmail.com');
-  await page.getByRole('textbox', { name: 'password' }).fill('xxxx1234');
-  await page.getByRole('button', { name: 'Login' }).click();
+  await globalLogin(page, 'Test555@gmail.com', 'xxxx1234');
   await page.getByRole('link', { name: ' Delete Account' }).click();
   await page.getByRole('link', { name: 'Continue' }).click();
 });

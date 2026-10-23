@@ -1,23 +1,23 @@
 # 🧪 Software Quality Assurance (QA) Portfolio
 
-โปรเจกต์ทดสอบระบบเว็บ E-Commerce (Automation Exercise / SauceDemo) ครอบคลุมทั้ง Manual Testing, Automated E2E Testing, และ API Testing
+โปรเจกต์ทดสอบระบบเว็บ E-Commerce (Automation Exercise) ครอบคลุมทั้ง Manual Testing, Automated E2E Testing และ API Testing
 
 ## 📌 Project Overview
 - **Target Application:** [Automation Exercise](https://automationexercise.com/)
-- **Objective:** ตรวจสอบความถูกต้องและคุณภาพของระบบ ตั้งแต่การสมัครสมาชิก, ค้นหาสินค้า, ตะกร้าสินค้า จนถึงกระบวนการชำระเงิน
+- **Objective:** ตรวจสอบความถูกต้องและคุณภาพของระบบแบบ End-to-End ตั้งแต่การสมัครสมาชิก, ค้นหาสินค้า, การจัดการตะกร้าสินค้า จนถึงกระบวนการชำระเงินและออกใบเสร็จ (Invoice)
 
 ## 🛠️ Tech Stack & Tools
-- **Test Management:**  Google Sheets [View Test Cases Sheet](https://docs.google.com/spreadsheets/d/1ksMbMnn50Owst2NSoDv5YRVNF5XVCHiKB3KBdxl0juI/edit?usp=sharing)
+- **Test Management:** Google Sheets & PDF Documentation ([View Test Cases Sheet](https://docs.google.com/spreadsheets/d/1ksMbMnn50Owst2NSoDv5YRVNF5XVCHiKB3KBdxl0juI/edit?usp=sharing))
+- **Automated Testing:** Playwright (JavaScript)
 - **API Testing:** Postman & Newman
-- **Automated Testing:** Playwright (javaScript) 
 - **Version Control:** Git & GitHub
 
 ## 📁 Repository Structure
-- `docs/` : เอกสารการวางแผนการทดสอบ (Test Plan), Test Cases, และ Bug Reports
-- `tests/e2e/` : สคริปต์สำหรับการทดสอบหน้าเว็บแบบอัตโนมัติ (Automated E2E)
-- `tests/api/` : ชุดทดสอบ Postman Collections สำหรับ API
+- `docs/` : เอกสารการวางแผนการทดสอบ (Test Plan), Test Cases (PDF/Sheet) และ Bug Reports
+- `tests/e2e/` : สคริปต์สำหรับการทดสอบ End-to-End แบบอัตโนมัติด้วย Playwright
+- `tests/api/` : ชุดทดสอบ API (Postman Collections & Environment)
 
 ## 🎯 Test Strategy
-- **Equivalence Partitioning (EP):** ใช้สำหรับจำแนกกลุ่มข้อมูลในฟอร์มลงทะเบียน
-- **Boundary Value Analysis (BVA):** ใช้ทดสอบความถูกต้องของขอบเขตจำนวนสินค้าในตะกร้าและฟิลด์รหัสผ่าน
-- **Risk-Based Testing (RBT):** เน้นความสำคัญสูงสุดที่ Core User Flow (Login -> Add to Cart -> Checkout)
+- **Equivalence Partitioning (EP):** จำแนกกลุ่มข้อมูลสำหรับฟอร์มลงทะเบียนและระบบ Login
+- **Boundary Value Analysis (BVA):** ทดสอบขอบเขตจำนวนสินค้าในตะกร้าและฟิลด์ป้อนข้อมูลต่างๆ
+- **Risk-Based Testing (RBT):** มุ่งเน้นการทดสอบความถูกต้องในส่วน Core User Flow (Login ➡️ Add to Cart ➡️ Checkout ➡️ Payment ➡️ Download Invoice)
